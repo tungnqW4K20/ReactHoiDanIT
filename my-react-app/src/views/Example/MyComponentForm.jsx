@@ -4,7 +4,12 @@ import ChiComponent from "./ChiComponent";
 class MyComponentFrom extends React.Component {
 state = {
     firstname: '',
-    lastname: ''
+    lastname: '',
+    arrJob:[
+        {id: '001', title: 'dev', salary:'500'},
+        {id: '002', title: 'test', salary:'300'},
+        {id: '003', title: 'leader', salary:'700'}
+    ]
 }
 
 HandleOnChangeFirstname = (event) =>{
@@ -26,6 +31,7 @@ HandleOnClick = (event) =>{
     this.setState({
         firstname : '',
         lastname :''
+        
     })
 }
 
@@ -79,6 +85,8 @@ HandleOnClick = (event) =>{
         <ChiComponent
             name = {this.state.firstname}
             age = {'26'}
+            adress = {'Hà Nội'}
+            arrJob = {this.state.arrJob}
         />
       </div>
     );
