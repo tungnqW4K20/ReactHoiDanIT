@@ -1,23 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-// import './App.css'
-// import MyComponent from './views/Example/Mycomponent'
-import MyComponentFrom from './views/Example/MyComponentForm'
+// src/App.js
+
+import React from 'react';
+import MyComponentForm from './views/Example/MyComponentForm';
+import ListToDo from './views/TODO/ListToDo';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="text-center">
-          <p className="text-lg font-semibold text-gray-700 mb-4">
-            Hello world ReactJS with HoiDanIT
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="w-full max-w-4xl mx-auto">
+        <header className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800">
+            
+          </h1>
+          <p className="text-lg text-gray-600 mt-2">
+            Simple ToDoApp with React Hoi Dan IT
           </p>
-          <MyComponentFrom />
-        </div>
+        </header>
+
+        {/* <MyComponentForm /> */}
+        <ListToDo/>
+        <ToastContainer />
       </div>
-    
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

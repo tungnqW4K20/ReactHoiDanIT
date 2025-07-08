@@ -1,90 +1,90 @@
 import React from "react";
-
-class AddComponent extends React.Component{
-
-state ={
+class AddComponent extends React.Component {
+  state = {
     title: '',
-    salary:''
-}
+    salary: ''
+  }
 
-HandleOnChangetitle = (event) =>{
+  handleChangeTitle = (event) => {
     this.setState({
-        title : event.target.value
-    })
-}
+      title: event.target.value
+    });
+  }
 
-HandleOnChangesalary = (event) =>{
+  handleChangeSalary = (event) => {
     this.setState({
-        salary : event.target.value
-    })
-}
+      salary: event.target.value
+    });
+  }
 
-HandleOnClick = (event) =>{
+  handleSubmit = (event) => {
     event.preventDefault();
-    if (!this.state.title || !this.state.title )
-    {
-        alert("Missing require params!")
-        return;
+    if (!this.state.title || !this.state.salary) {
+      alert("Missing required params!");
+      return;
     }
-    console.log("Check data input", this.state)
-    this.props.Addnewjob({
-        id: Math.floor(Math.random() * 1001),
-        title : this.state.title,
-        salary : this.state.salary
+    this.props.addNewJob({
+      id: Math.floor(Math.random() * 10001),
+      title: this.state.title,
+      salary: this.state.salary
     });
     this.setState({
-        title : '',
-        salary : ''
-    })
+      title: '',
+      salary: ''
+    });
+  }
+
+  render() {
+    return (
+      <div className="w-full">
+        <div>
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">
+            JOB TITLE
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Vui lòng điền đầy đủ bên dưới
+          </p>
+        </div>
+        <form className="mt-8 space-y-6" onSubmit={this.handleSubmit}>
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="job-title" className="sr-only">Job title</label>
+              <input
+                id="job-title"
+                type="text"
+                required
+                placeholder="Job title (e.g., Senior React Developer)"
+                className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                value={this.state.title}
+                onChange={this.handleChangeTitle}
+              />
+            </div>
+            <div>
+              <label htmlFor="salary" className="sr-only">Salary</label>
+              <input
+                id="salary"
+                type="number" 
+                required
+                placeholder="Salary (e.g., 5000)"
+                className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                value={this.state.salary}
+                onChange={this.handleChangeSalary}
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
 
-
-    render() {
-        return(
-            <React.Fragment>
-                <form>
-                <div className="mb-5">
-                <label className="block text-gray-700 text-sm font-medium mb-2">
-                    Job title
-                </label>
-                <input
-                    type="text"
-                    placeholder="Enter your first name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                    value ={this.state.title}
-                    onChange={(event) => this.HandleOnChangetitle(event)}
-                />
-                </div>
-
-                <div className="mb-6">
-                <label className="block text-gray-700 text-sm font-medium mb-2">
-                    Salary
-                </label>
-                <input
-                    type="text"
-                    placeholder="Enter your last name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                    value ={this.state.salary}
-                    onChange={(event) => this.HandleOnChangesalary(event)}
-                />
-                </div>
-
-                <button
-                type="submit"
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-semibold shadow-md hover:from-indigo-600 hover:to-blue-600 transition"
-                onClick={(event) => this.HandleOnClick(event)}
-                >
-                Submit
-                </button>
-            </form>
-
-
-            </React.Fragment>
-               
-            
-
-        )
-    }
-}
-
-export default AddComponent
+export default AddComponent;

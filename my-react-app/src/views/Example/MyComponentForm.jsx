@@ -2,46 +2,47 @@ import React from "react";
 import ChiComponent from "./ChiComponent";
 import AddComponent from "./AddComponent";
 
-class MyComponentFrom extends React.Component {
-state = {
-    arrJob:[
-        {id: '001', title: 'dev', salary:'500'},
-        {id: '002', title: 'test', salary:'300'},
-        {id: '003', title: 'leader', salary:'700'}
+class MyComponentForm extends React.Component {
+  state = {
+    arrJob: [
+      { id: 'job-001', title: 'Frontend Developer', salary: '5000' },
+      { id: 'job-002', title: 'Backend Developer', salary: '6000' },
+      { id: 'job-003', title: 'Project Manager', salary: '7000' }
     ]
-}
+  }
 
-
-Addnewjob = (job) =>{
-    console.log("check job form pareant: ", job)
+  addNewJob = (job) => {
     this.setState({
-        arrJob: [...this.state.arrJob , job]
-    })
-} 
+      arrJob: [...this.state.arrJob, job]
+    });
+  }
 
+  deleteJob = (jobToDelete) => {
+    let currentJobs = this.state.arrJob;
+    currentJobs = currentJobs.filter(item => item.id !== jobToDelete.id);
+    this.setState({
+      arrJob: currentJobs
+    });
+  }
 
   render() {
     return (
-
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-200 p-4">
-        <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl p-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-            Welcome!
-          </h2>
-          <p className="text-gray-500 text-center mb-8">
-            Please fill in the form below
-          </p>
-            <AddComponent
-                Addnewjob = {this.Addnewjob}
-            />
-          
-        </div>
+      
+      <div className="bg-white rounded-2xl shadow-xl p-8 space-y-8">
+        
+        <AddComponent
+          addNewJob={this.addNewJob}
+        />
+        
+        <hr className="border-gray-200" />
+        
         <ChiComponent
-            arrJob = {this.state.arrJob}
+          arrJob={this.state.arrJob}
+          deleteJob={this.deleteJob}
         />
       </div>
     );
   }
 }
 
-export default MyComponentFrom;
+export default MyComponentForm;
